@@ -10,6 +10,8 @@
 !.yarn/releases
 !.yarn/versions
 
+bwm\bk\node_modules
+
 # testing
 /coverage
 
