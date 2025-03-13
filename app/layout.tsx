@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Particles from "./components/background";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,15 +20,33 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        {/* Wrapper to contain everything */}
+        <div className="relative w-full h-screen">
+          {/* Particles Component - Background */}
+          <div className="absolute inset-0 w-full h-full -z-10">
+            <Particles
+              particleColors={["#ffffff", "#ffffff"]}
+              particleCount={200}
+              particleSpread={10}
+              speed={0.3}
+              particleBaseSize={100}
+              moveParticlesOnHover={true}
+              alphaParticles={false}
+              disableRotation={false}
+            />
+          </div>
+
+          {/* Main Content */}
+          <main className="relative z-10 flex flex-col items-center justify-center h-full">
+            {children}
+          </main>
+        </div>
       </body>
     </html>
   );
